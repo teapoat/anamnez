@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anamnez - Sample Windows health report</title><style>
+html { color-scheme: dark; background: #10141c; color: #e6edf7; }
+body { max-width: 66rem; margin: 0 auto; padding: 1.5rem 1rem 3rem; font: 15px/1.48 "Segoe UI", system-ui, sans-serif; }
+h1 { font-size: 1.6rem; margin: 0 0 1rem; }
+h2 { font-size: 1.15rem; margin: 1.55rem 0 .6rem; }
+pre { color: #c0cbd9; font: 13px/1.5 Consolas, monospace; white-space: pre-wrap; word-wrap: break-word; margin: 0; }
+p { margin: .3rem 0; }
+.summary { padding: .75rem 1rem; background: #171d26; border: 1px solid #303c4d; border-radius: .45rem; }
+.clock { color: #ffd08c; }
+.subsystems { margin: 0; }
+.subsystems div { margin: .18rem 0; padding: .35rem .55rem; }
+.subsystems dt { display: inline-block; min-width: 52%; }
+.subsystems dd { display: inline-block; margin: 0; font-weight: 600; }
+.stripe { border-left: 3px solid; }
+.critical { border-color: #d56978; background: #2a1c27; }
+.warning { border-color: #d79b54; background: #2b241f; }
+.clear { border-color: #619d84; background: #172826; }
+.muted { border-color: #394555; background: #171d26; }
+.critical .severity { color: #ff9ca6; }
+.warning .severity { color: #ffd08c; }
+.clear .severity { color: #89d4b2; }
+.muted .severity { color: #afbac9; }
+.finding { padding: .65rem .8rem; margin: .55rem 0; }
+.finding summary { cursor: pointer; display: flex; align-items: baseline; gap: .55rem; padding-right: .5rem; list-style: none; }
+.finding summary::-webkit-details-marker { display: none; }
+.finding summary::before { content: "▸"; color: #b9c6d6; flex-shrink: 0; }
+.finding[open] summary::before { content: "▾"; }
+.finding-title { flex: 1; min-width: 0; font-weight: 600; overflow-wrap: anywhere; }
+.finding-count { flex-shrink: 0; margin-left: auto; text-align: right; white-space: nowrap; color: #b9c6d6; font-size: .88rem; }
+.finding-body { margin-top: .65rem; }
+.muted-text, .reference { color: #b9c6d6; }
+.episode-heading { font-weight: 600; margin-top: .65rem; }
+.records { list-style: none; padding: 0; margin: 0; }
+.records li { padding: .25rem 0; border-top: 1px solid #394555; overflow-wrap: anywhere; }
+.record-time { display: inline-block; min-width: 21ch; font-variant-numeric: tabular-nums; }
+.reference { display: block; font-size: .87rem; margin-left: 21ch; }
+@media (max-width: 33rem) { .reference { margin-left: 0; } }
+</style></head><body>
+<h1>Anamnez - Sample Windows health report</h1>
+<p class="muted-text"><strong>Example report.</strong> All machine details and diagnostic records are synthetic.</p><section class="summary"><pre>
+Host: EXAMPLE-PC
+OS: Windows 11 Pro, 64-bit
+Machine: Example desktop
+CPU: Example 6-core processor
+RAM: 16 GB
+Disk: Example SSD, 512 GB, SATA
+Time zone: UTC, offset now 00:00:00
+Captured (UTC): 2026-01-18T12:00:00Z
+Dump mode: 3 = small (minidump)
+WER: on (no disabling setting found)
+Integrity: verified
+Clock: no issue found
+Failed collection steps: 0
+</pre></section><section><h2>Subsystems (rules evaluated)</h2><dl class="subsystems">
+<div class="stripe critical"><dt>OS and power</dt> <dd class="severity">critical</dd></div>
+<div class="stripe warning"><dt>Applications</dt> <dd class="severity">warning</dd></div>
+<div class="stripe clear"><dt>Storage</dt> <dd class="severity">no signals found</dd></div>
+<div class="stripe clear"><dt>Hardware</dt> <dd class="severity">no signals found</dd></div>
+<div class="stripe muted"><dt>Drivers and devices</dt> <dd class="severity">not analyzed</dd></div>
+<div class="stripe muted"><dt>Network</dt> <dd class="severity">not analyzed</dd></div>
+<div class="stripe muted"><dt>Boot and services</dt> <dd class="severity">not analyzed</dd></div>
+<div class="stripe muted"><dt>Security</dt> <dd class="severity">not analyzed</dd></div>
+</dl></section><section><h2>SMART</h2>
+<div class="finding stripe clear"><span class="severity">Example SSD: Overall check passed (PASSED)</span> <small>info/smart-sda.txt</small></div>
+</section><section><h2>Findings</h2>
+<p class="muted-text">Times below are as recorded, in UTC.</p>
+<details class="finding stripe critical" open><summary><span class="finding-title"><span class="severity">[CRITICAL]</span> Windows stopped (bugcheck) 0x116</span> <span class="finding-count">1 episode · 3 rows</span></summary><div class="finding-body">
+<p>Windows failed to recover the display driver after a timeout and stopped (BSOD).</p>
+<p>Each episode is one Windows stop. Several records can refer to the same stop.</p>
+<p>Episodes: 1 | Event records: 2 | WER files: 1</p>
+<p>First recorded: 2026-01-12 09:14:00 UTC | Last recorded: 2026-01-12 09:14:00 UTC</p>
+<p>Recent episodes: 7d: 1, 30d: 1</p>
+<p>Check the stop code and available dumps. A code alone does not identify the failed part.</p>
+<p class="episode-heading">Episode 1 | Recorded: 2026-01-12 09:14:00 UTC</p>
+<ul class="records">
+<li><span class="record-time">2026-01-12 09:14:00 UTC</span> Startup after an unclean shutdown<span class="reference">System / Microsoft-Windows-Kernel-Power 41 / record 101</span></li>
+<li><span class="record-time">2026-01-12 09:14:06 UTC</span> Windows stop code<span class="reference">System / Microsoft-Windows-WER-SystemErrorReporting 1001 / record 102</span></li>
+<li><span class="record-time">2026-01-12 09:14:00 UTC</span> Windows Error Reporting file<span class="reference">wer/BlueScreen_example.wer</span></li>
+</ul>
+</div></details>
+<details class="finding stripe warning"><summary><span class="finding-title"><span class="severity">[WARNING]</span> Application stopped or hung ExampleEditor.exe</span> <span class="finding-count">2 episodes · 2 rows</span></summary><div class="finding-body">
+<p>Episodes: 2 | Event records: 2 | WER files: 0</p>
+<p>First recorded: 2026-01-15 11:14:00 UTC | Last recorded: 2026-01-17 14:14:00 UTC</p>
+<p>Recent episodes: 7d: 2, 30d: 2</p>
+<p>Check whether the same application and failure recur.</p>
+<ul class="records">
+<li><span class="record-time">2026-01-15 11:14:00 UTC</span> Windows Error Reporting event<span class="reference">Application / Windows Error Reporting 1001 / record 50</span></li>
+</ul>
+<ul class="records">
+<li><span class="record-time">2026-01-17 14:14:00 UTC</span> Windows Error Reporting event<span class="reference">Application / Windows Error Reporting 1001 / record 53</span></li>
+</ul>
+</div></details>
+<details class="finding stripe warning"><summary><span class="finding-title"><span class="severity">[WARNING]</span> Unexpected shutdown or restart</span> <span class="finding-count">1 episode · 1 row</span></summary><div class="finding-body">
+<p>Windows logged these events at the next startup, after an unclean shutdown.</p>
+<p>Episodes: 1 | Event records: 1 | WER files: 0</p>
+<p>First recorded: 2026-01-16 09:14:03 UTC | Last recorded: 2026-01-16 09:14:03 UTC</p>
+<p>Recent episodes: 7d: 1, 30d: 1</p>
+<p>Check what preceded the restart. This record alone does not identify the cause.</p>
+<ul class="records">
+<li><span class="record-time">2026-01-16 09:14:03 UTC</span> Startup after an unclean shutdown<span class="reference">System / Microsoft-Windows-Kernel-Power 41 / record 114</span></li>
+</ul>
+</div></details>
+</section><section><h2>Sources</h2><pre>
+  System: readable (5 records)
+    Recorded range: 2026-01-12 09:14:00 UTC to 2026-01-16 09:14:03 UTC
+  Application: readable (2 records)
+    Recorded range: 2026-01-15 11:14:00 UTC to 2026-01-17 14:14:00 UTC
+  WER files: readable (1 files)
+  Dump files: missing
+  SMART files: readable (1 files)
+</pre></section><section><h2>Notes</h2><pre>
+Unmatched records may describe the same incident. Counts cover retained and readable records only.
+</pre></section></body></html>
